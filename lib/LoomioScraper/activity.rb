@@ -2,8 +2,8 @@ require_relative "helper"
 
 module LoomioScraper
 	class Comment < LoomioScraper::Scraper
-		def initialize(*attr)
-			super(*attr)
+		def initialize(dom)
+			@dom = dom
 			@attributes = %w{
 				link
 				author_name
@@ -31,7 +31,7 @@ module LoomioScraper
 		end
 
 		def comments
-			@comments ||= @dom.css('.activity-card__activity-list').map { |comment| Comment.new(comment).to_hash }
+			@comments ||= @dom.css(".activity-card__activity-list li").map { |comment| Comment.new(comment).to_hash }
 		end
 	end
 end

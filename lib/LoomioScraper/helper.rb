@@ -6,10 +6,11 @@ module LoomioScraper
     		@attributes = []
     	end
 
-		def self.html_loader(url, *args)
+		def self.html_loader(url, file = 'index.html')
+#			return Nokogiri::HTML(File.open('index.html').read)
+
 	    	dom = html = nil
-    		file = args[0] || "index.html"
-            pid ||= Process.spawn('phantomjs', "lib/LoomioScraper/script.js", url)
+            pid ||= Process.spawn('phantomjs', "lib/LoomioScraper/script.js", url, file)
 	  		Process.waitpid(pid)
     
             html ||= File.open(file).read
