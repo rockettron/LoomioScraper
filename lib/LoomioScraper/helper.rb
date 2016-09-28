@@ -1,20 +1,20 @@
 module LoomioScraper
 	class Scraper
 
-	   	def initialize(url)
-    		@dom = Scraper.html_loader(url)
+	   	def initialize(url, *args)
+    		@dom = Scraper.html_loader(url, *args)
     		@attributes = []
     	end
 
-		def self.html_loader(url)
+		def self.html_loader(url, *args)
 	    	dom = html = nil
-    		begin
-	    		#html ||= open(URI.parse(url))
-    			dom ||= Nokogiri::HTML(File.open('index.html'))
-    		rescue
-	    		puts "Can not download html file"
-    		end
-    		dom
+    		file = args[0] || "index.html"
+            pid ||= Process.spawn('phantomjs', "lib/LoomioScraper/script.js", url)
+	  		Process.waitpid(pid)
+    
+            html ||= File.open(file).read
+            File.delete(file)
+            dom ||= Nokogiri::HTML(html)    
     	end
 
 		def to_hash

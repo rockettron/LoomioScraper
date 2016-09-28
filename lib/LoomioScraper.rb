@@ -1,4 +1,3 @@
-require "mechanize"
 require "nokogiri"
 require "open-uri"
 require "json"
