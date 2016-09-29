@@ -6,8 +6,8 @@ require 'LoomioScraper/version'
 Gem::Specification.new do |spec|
   spec.name          = "LoomioScraper"
   spec.version       = LoomioScraper::VERSION
-  spec.authors       = ["RDimon2912"]
-  spec.email         = ["rdimon2912@gmail.com"]
+  spec.authors       = ["Dmitry Rozhkov", "Viktor Presniatski"]
+  spec.email         = ["rdimon2912@gmail.com", "presniatski@gmail.com"]
 
   spec.summary       = %q{Short summary}
   spec.description   = %q{Scraper loomio activity}

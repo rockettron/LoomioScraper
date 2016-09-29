@@ -30,8 +30,8 @@ module LoomioScraper
 	end
 
 	class Activity < LoomioScraper::Scraper
-		def initialize(*attr)
-			super(*attr)
+		def initialize(url)
+			super(url)
 			@attributes = %w{ comments }
 		end
 

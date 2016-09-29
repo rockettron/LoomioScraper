@@ -1,20 +1,23 @@
 module LoomioScraper
 	class Scraper
 
-	   	def initialize(url, *args)
-    		@dom = Scraper.html_loader(url, *args)
+	   	def initialize(url)
+    		@dom = Scraper.html_loader(url)
     		@attributes = []
     	end
 
-		def self.html_loader(url, file = 'index.html')
-#			return Nokogiri::HTML(File.open('index.html').read)
-
+		def self.html_loader(url)
+#			return Nokogiri::HTML(File.open('index.html').read)	
+			gem_path = LoomioScraper::home_dir
+			
+			script_path = gem_path + '/lib/LoomioScraper/script.js'
+			file_path = gem_path + '/index.html'
 	    	dom = html = nil
-            pid ||= Process.spawn('phantomjs', "lib/LoomioScraper/script.js", url, file)
+            pid ||= Process.spawn('phantomjs', script_path, url, file_path)
 	  		Process.waitpid(pid)
     
-            html ||= File.open(file).read
-            File.delete(file)
+            html ||= File.open(file_path).read
+            File.delete(file_path)
             dom ||= Nokogiri::HTML(html)    
     	end
 
