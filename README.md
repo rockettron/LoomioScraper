@@ -2,9 +2,12 @@
 
 Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/LoomioScraper`. To experiment with that code, run `bin/console` for an interactive prompt.
 
-TODO: Delete this and the text above, and describe your gem
-
 ## Installation
+
+On your macine must be install phantomjs:
+```
+sudo apt-get install phantomjs
+```
 
 Add this line to your application's Gemfile:
 
@@ -22,7 +25,16 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+You can parse Loomio Activity 
+```ruby 
+> activity = LoomioScraper::Activity.new("https://www.loomio.org/d/gEZ5NO1W")
+#=> page load finished
+#=> #<LoomioScraper::Activity:0x00000001413a88..
+> comments = activity.comments
+#=> [{:id=>"1128958", :link=>"/u/yegormukha", :author_name=>"Yegor Mukha", :comment=>"Странные выводы дает автор статьи. \"...
+> activity.to_hash
+#=> {:comments=>[{:id=>"1128958", :link=>"/u/yegormukha", :author_name=>"Yegor Mukha", :comment=>"Странные выводы дает автор статьи. \"...
+```
 
 ## Development
 
@@ -32,5 +44,5 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/LoomioScraper.
+Bug reports and pull requests are welcome on GitHub at https://github.com/rockettron/LoomioScraper.
 
